@@ -26,7 +26,7 @@ import com.atguigu.gmall.wms.service.WareSkuService;
 /**
  * 商品库存
  *
- * @author fengge
+ * @author guest
  * @email lxf@atguigu.com
  * @date 2019-12-04 10:34:01
  */

@@ -9,7 +9,7 @@ import com.atguigu.core.bean.QueryCondition;
 /**
  * 仓库信息
  *
- * @author fengge
+ * @author guest
  * @email lxf@atguigu.com
  * @date 2019-12-04 10:34:01
  */

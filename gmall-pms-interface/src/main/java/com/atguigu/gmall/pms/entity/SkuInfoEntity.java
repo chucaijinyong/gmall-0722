@@ -11,8 +11,8 @@ import lombok.Data;
 
 /**
  * sku信息
- * 
- * @author fengge
+ *
+ * @author guest
  * @email lxf@atguigu.com
  * @date 2019-12-02 11:23:36
  */
@@ -34,7 +34,7 @@ public class SkuInfoEntity implements Serializable {
 	@ApiModelProperty(name = "spuId",value = "spuId")
 	private Long spuId;
 	/**
-	 * 
+	 *
 	 */
 	@ApiModelProperty(name = "skuCode",value = "")
 	private String skuCode;

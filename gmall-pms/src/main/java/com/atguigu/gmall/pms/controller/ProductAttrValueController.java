@@ -23,7 +23,7 @@ import com.atguigu.gmall.pms.service.ProductAttrValueService;
 /**
  * spu属性值
  *
- * @author fengge
+ * @author guest
  * @email lxf@atguigu.com
  * @date 2019-12-02 11:23:36
  */

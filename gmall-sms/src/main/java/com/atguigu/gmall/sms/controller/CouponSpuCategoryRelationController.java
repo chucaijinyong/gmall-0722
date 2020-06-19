@@ -22,7 +22,7 @@ import com.atguigu.gmall.sms.service.CouponSpuCategoryRelationService;
 /**
  * 优惠券分类关联
  *
- * @author fengge
+ * @author guest
  * @email lxf@atguigu.com
  * @date 2019-12-02 15:59:14
  */

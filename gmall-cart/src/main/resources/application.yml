@@ -9,9 +9,9 @@ spring:
     host: 172.16.116.100
   rabbitmq:
     host: 172.16.116.100
-    virtual-host: /fengge
-    username: fengge
-    password: fengge
+    virtual-host: /guest
+    username: guest
+    password: guest
 gmall:
   jwt:
     pubKeyPath: D:\\project-0722\\rsa\\rsa.pub # 公钥地址

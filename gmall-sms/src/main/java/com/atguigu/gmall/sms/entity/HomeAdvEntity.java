@@ -10,8 +10,8 @@ import lombok.Data;
 
 /**
  * 首页轮播广告
- * 
- * @author fengge
+ *
+ * @author guest
  * @email lxf@atguigu.com
  * @date 2019-12-02 15:59:14
  */

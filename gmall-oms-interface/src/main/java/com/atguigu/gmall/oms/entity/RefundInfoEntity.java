@@ -11,8 +11,8 @@ import lombok.Data;
 
 /**
  * 退款信息
- * 
- * @author fengge
+ *
+ * @author guest
  * @email lxf@atguigu.com
  * @date 2019-12-18 10:25:39
  */
@@ -54,7 +54,7 @@ public class RefundInfoEntity implements Serializable {
 	@ApiModelProperty(name = "refundChannel",value = "退款渠道[1-支付宝，2-微信，3-银联，4-汇款]")
 	private Integer refundChannel;
 	/**
-	 * 
+	 *
 	 */
 	@ApiModelProperty(name = "refundContent",value = "")
 	private String refundContent;

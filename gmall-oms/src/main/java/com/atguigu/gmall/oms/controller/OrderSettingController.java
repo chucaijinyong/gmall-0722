@@ -22,7 +22,7 @@ import com.atguigu.gmall.oms.service.OrderSettingService;
 /**
  * 订单配置信息
  *
- * @author fengge
+ * @author guest
  * @email lxf@atguigu.com
  * @date 2019-12-18 10:25:39
  */

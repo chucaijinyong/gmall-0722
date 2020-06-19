@@ -10,8 +10,8 @@ import lombok.Data;
 
 /**
  * spu信息
- * 
- * @author fengge
+ *
+ * @author guest
  * @email lxf@atguigu.com
  * @date 2019-12-02 11:23:36
  */
@@ -53,12 +53,12 @@ public class SpuInfoEntity implements Serializable {
 	@ApiModelProperty(name = "publishStatus",value = "上架状态[0 - 下架，1 - 上架]")
 	private Integer publishStatus;
 	/**
-	 * 
+	 *
 	 */
 	@ApiModelProperty(name = "createTime",value = "")
 	private Date createTime;
 	/**
-	 * 
+	 *
 	 */
 	@ApiModelProperty(name = "uodateTime",value = "")
 	private Date uodateTime;

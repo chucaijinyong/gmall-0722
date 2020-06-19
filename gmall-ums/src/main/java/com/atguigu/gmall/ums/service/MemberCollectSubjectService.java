@@ -9,7 +9,7 @@ import com.atguigu.core.bean.QueryCondition;
 /**
  * 会员收藏的专题活动
  *
- * @author fengge
+ * @author guest
  * @email lxf@atguigu.com
  * @date 2019-12-16 09:40:32
  */

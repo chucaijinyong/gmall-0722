@@ -22,7 +22,7 @@ import com.atguigu.gmall.sms.service.MemberPriceService;
 /**
  * 商品会员价格
  *
- * @author fengge
+ * @author guest
  * @email lxf@atguigu.com
  * @date 2019-12-02 15:59:14
  */

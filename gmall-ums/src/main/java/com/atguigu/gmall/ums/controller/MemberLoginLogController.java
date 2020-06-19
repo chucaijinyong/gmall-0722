@@ -22,7 +22,7 @@ import com.atguigu.gmall.ums.service.MemberLoginLogService;
 /**
  * 会员登录记录
  *
- * @author fengge
+ * @author guest
  * @email lxf@atguigu.com
  * @date 2019-12-16 09:40:32
  */

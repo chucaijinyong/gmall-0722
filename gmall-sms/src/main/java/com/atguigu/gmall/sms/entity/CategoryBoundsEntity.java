@@ -11,8 +11,8 @@ import lombok.Data;
 
 /**
  * 商品分类积分设置
- * 
- * @author fengge
+ *
+ * @author guest
  * @email lxf@atguigu.com
  * @date 2019-12-02 15:59:14
  */
@@ -29,7 +29,7 @@ public class CategoryBoundsEntity implements Serializable {
 	@ApiModelProperty(name = "id",value = "id")
 	private Long id;
 	/**
-	 * 
+	 *
 	 */
 	@ApiModelProperty(name = "categoryId",value = "")
 	private Long categoryId;

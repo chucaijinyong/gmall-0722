@@ -6,12 +6,12 @@ import org.apache.ibatis.annotations.Mapper;
 
 /**
  * 商品属性
- * 
- * @author fengge
+ *
+ * @author guest
  * @email lxf@atguigu.com
  * @date 2019-12-02 11:23:37
  */
 @Mapper
 public interface AttrDao extends BaseMapper<AttrEntity> {
-	
+
 }

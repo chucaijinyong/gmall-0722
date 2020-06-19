@@ -6,12 +6,12 @@ import org.apache.ibatis.annotations.Mapper;
 
 /**
  * 商品阶梯价格
- * 
- * @author fengge
+ *
+ * @author guest
  * @email lxf@atguigu.com
  * @date 2019-12-02 15:59:14
  */
 @Mapper
 public interface SpuLadderDao extends BaseMapper<SpuLadderEntity> {
-	
+
 }

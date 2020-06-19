@@ -1,10 +1,33 @@
+server:
+  port: 8081
 spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  redis:
+    host: 127.0.0.1
+    port: 6379
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/guli_pms?useUnicode=true&characterEncoding=UTF-8&useSSL=false
+    password: root
+    username: root
   rabbitmq:
-    host: 172.16.116.100
+    host: 127.0.0.1
     port: 5672
-    virtual-host: /fengge
-    username: fengge
-    password: fengge
+    virtual-host: /guest
+    username: guest
+    password: guest
 item:
   rabbitmq:
     exchange: GMALL-PMS-EXCHANGE
+
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+#      field-strategy: not_null
+

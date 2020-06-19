@@ -10,8 +10,8 @@ import lombok.Data;
 
 /**
  * 成长值变化历史记录
- * 
- * @author fengge
+ *
+ * @author guest
  * @email lxf@atguigu.com
  * @date 2019-12-16 09:40:32
  */

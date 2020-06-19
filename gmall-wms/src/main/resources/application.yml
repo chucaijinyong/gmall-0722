@@ -14,9 +14,9 @@ spring:
     host: 172.16.116.100
   rabbitmq:
     host: 172.16.116.100
-    virtual-host: /fengge
-    username: fengge
-    password: fengge
+    virtual-host: /guest
+    username: guest
+    password: guest
 mybatis-plus:
   global-config:
     db-config:
