@@ -4,7 +4,6 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
 import org.joda.time.DateTime;
 
 import java.security.PrivateKey;
@@ -16,7 +15,7 @@ public class JwtUtils {
      * 私钥加密token
      *
      * @param map           载荷中的数据
-     * @param expireMinutes 过期时间，单位秒
+     * @param expireMinutes 过期时间，单位分钟
      * @return
      * @throws Exception
      */

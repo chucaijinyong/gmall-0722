@@ -6,8 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import javax.annotation.PostConstruct;
-import java.io.File;
-import java.security.PrivateKey;
 import java.security.PublicKey;
 
 @ConfigurationProperties(prefix = "gmall.jwt")
@@ -27,11 +25,10 @@ public class JwtProperties {
     @PostConstruct
     public void init() {
         try {
-            File pubKey = new File(pubKeyPath);
-            // 获取公钥和私钥
+            // 获取公钥
             this.publicKey = RsaUtils.getPublicKey(pubKeyPath);
         } catch (Exception e) {
-            log.error("初始化公钥和私钥失败！", e);
+            log.error("初始化公钥失败！", e);
             throw new RuntimeException();
         }
     }

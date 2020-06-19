@@ -19,9 +19,15 @@ public class JwtTest {
 
     private PrivateKey privateKey;
 
+    /**
+     * 根据路径生成公钥和私钥，注意在生成公钥和私钥时要把before方法注销
+     * 因为那是获取公钥和私钥的方法
+     * 另外生成密钥对的方式也可以在命令行里实现，具体可以百度
+     * @throws Exception
+     */
     @Test
     public void testRsa() throws Exception {
-        RsaUtils.generateKey(pubKeyPath, priKeyPath, "2432sdsdAD@#@#sfdsf23");
+        RsaUtils.generateKey(pubKeyPath, priKeyPath, "11111");
     }
 
     @Before
@@ -35,14 +41,15 @@ public class JwtTest {
         Map<String, Object> map = new HashMap<>();
         map.put("id", "11");
         map.put("username", "liuyan");
-        // 生成token
+        // 生成token，可以设置生成的token的过期时间，默认时分钟
         String token = JwtUtils.generateToken(map, privateKey, 1);
+        // 对于生成的字符串token可以通过https://base64.supfree.net/ 查看解密后的用户信息
         System.out.println("token = " + token);
     }
 
     @Test
     public void testParseToken() throws Exception {
-        String token = "eyJhbGciOiJSUzI1NiJ9.eyJpZCI6IjExIiwidXNlcm6hbWUiOiJsaXV5YW4iLCJleHAiOjE1NzY0ODI0MjF9.TXACLiiVV9eqfzgIKm2nsXCQMSSbQSZOiBORkntIyysUp6ldmjQpwyU-EgmfylfKXkbG0GljCDCGrDd8j2ONWIPl6IHlV9MP3JZuchQjGGkDM6CdUKIYaM6s1AZcn8Y4gmGjLCbbj30ojXQBYf8FVggj1ExQItC2h2vHawxCnwoOZCLicnI3R-FWDPHzgtCcnjbhHl-YtdcAl9Q36GKt-H8w5YtFg3jY-CP6Qg3GvoIhIXCeI82ZaF4f6xmQ_9X6BUAQpnsfI8OPo4ah6gXpRDHkU4XpyeTUH_ylp50YLJ6i7BPT7zilwlAnQYQ7m32WHPPboWBXTw1eJ-Cm_aydWA";
+        String token = "eyJhbGciOiJSUzI1NiJ9.eyJpZCI6IjExIiwidXNlcm5hbWUiOiJsaXV5YW4iLCJleHAiOjE1OTI1Nzg1NjV9.F_obUHZFchfduH-uxDECeEna2dlX-HBCtBZTU8ciu2M5JB88xArcTHfACwn9a6MKH_gSHrmq2sZ0HsR2paC-5FdkNRziIKGOz-6MeT1cxUST3C5kYkPnB9qbH0se7JS14a1YRAIcFmW0gI5lWEseRSR-ok3ioBHlzthTjPmXJXA4omngWXEHwgEPck_rgkx4TPAhSqTK5PiSgnDtWAGIMYkR0BLhXHFsJOsoqNwkXeiftGwWfAEzeGnmrs2T5fAslHPFThSJB4gkh4lDeArTDoW04vv-BMzrIMHWwxuLLztqPd8dabFjFXU81fnsfgm4Z1g9-GBcC_AABTq26kU6EQ";
 
         // 解析token
         Map<String, Object> map = JwtUtils.getInfoFromToken(token, publicKey);

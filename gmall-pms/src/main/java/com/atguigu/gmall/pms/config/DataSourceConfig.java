@@ -1,13 +1,12 @@
 //package com.atguigu.gmall.pms.config;
 //
-//import com.alibaba.druid.pool.DruidDataSource;
 //import com.zaxxer.hikari.HikariDataSource;
 //import io.seata.rm.datasource.DataSourceProxy;
 //import org.springframework.beans.factory.annotation.Value;
 //import org.springframework.boot.context.properties.ConfigurationProperties;
 //import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
 //import org.springframework.context.annotation.Primary;
+//import org.springframework.stereotype.Component;
 //
 //import javax.sql.DataSource;
 //
@@ -16,7 +15,8 @@
 // *
 // * @author HelloWoodes
 // */
-//@Configuration
+//@Component
+//@ConfigurationProperties(prefix = "spring.datasource")
 //public class DataSourceConfig {
 //
 //    /**
@@ -33,6 +33,8 @@
 //        hikariDataSource.setDriverClassName(driverClassName);
 //        hikariDataSource.setUsername(username);
 //        hikariDataSource.setPassword(password);
+//        System.out.println(username);
+//        System.out.println("=============="+hikariDataSource.toString());
 //        return new DataSourceProxy(hikariDataSource);
 //    }
 //}
