@@ -36,6 +36,7 @@ class GmallSearchApplicationTests {
 
     @Test
     void contextLoads() {
+//        数据初始化【只初始化一次】，创建索引和映射【指定字段的类型，是否存储，是否索引，是否分词】
         this.restTemplate.createIndex(Goods.class);
         this.restTemplate.putMapping(Goods.class);
     }

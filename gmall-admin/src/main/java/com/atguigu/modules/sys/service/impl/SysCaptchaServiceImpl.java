@@ -62,6 +62,7 @@ public class SysCaptchaServiceImpl extends ServiceImpl<SysCaptchaDao, SysCaptcha
         //删除验证码
         this.removeById(uuid);
 
+        // 验证码忽略大小写且验证码的过期时间毫秒数在当前时间之后
         if(captchaEntity.getCode().equalsIgnoreCase(code) && captchaEntity.getExpireTime().getTime() >= System.currentTimeMillis()){
             return true;
         }

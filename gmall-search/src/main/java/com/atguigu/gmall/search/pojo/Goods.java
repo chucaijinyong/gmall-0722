@@ -17,6 +17,7 @@ public class Goods {
 
     @Id
     private Long skuId;
+    // 不创建索引，不进行分词。默认是创建索引的，不进行存储，analyzer() default ""
     @Field(type = FieldType.Keyword, index = false)
     private String pic;
     @Field(type = FieldType.Text, analyzer = "ik_max_word")

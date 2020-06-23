@@ -20,8 +20,9 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class AbstractController {
 	protected Logger logger = LoggerFactory.getLogger(getClass());
-	
+
 	protected SysUserEntity getUser() {
+		// principal 当事人
 		return (SysUserEntity) SecurityUtils.getSubject().getPrincipal();
 	}
 

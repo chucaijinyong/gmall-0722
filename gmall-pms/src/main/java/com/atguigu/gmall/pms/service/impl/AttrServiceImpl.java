@@ -3,6 +3,7 @@ package com.atguigu.gmall.pms.service.impl;
 import com.atguigu.gmall.pms.dao.AttrAttrgroupRelationDao;
 import com.atguigu.gmall.pms.entity.AttrAttrgroupRelationEntity;
 import com.atguigu.gmall.pms.vo.AttrVO;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Map;
@@ -23,6 +24,8 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
 
     @Autowired
     private AttrAttrgroupRelationDao relationDao;
+    @Autowired
+    private AttrDao attrDao;
 
     @Override
     public PageVo queryPage(QueryCondition params) {
@@ -48,7 +51,7 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
                 new Query<AttrEntity>().getPage(condition),
                 wrapper
         );
-
+//        attrDao.selectPage(new Query<AttrEntity>().getPage(condition),wrapper);
         return new PageVo(page);
     }
 
