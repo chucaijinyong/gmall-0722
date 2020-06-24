@@ -1,19 +1,19 @@
 package com.atguigu.gmall.pms.entity;
 
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 import lombok.Data;
 
 /**
  * 品牌
  *
- * @author guest
- * @email lxf@atguigu.com
- * @date 2019-12-02 11:23:36
+ * @author chucai
+ * @email 1561763825@qq.com
+ * @date 2020-06-24 13:55:38
  */
 @ApiModel
 @Data
@@ -57,5 +57,49 @@ public class BrandEntity implements Serializable {
 	 */
 	@ApiModelProperty(name = "sort",value = "排序")
 	private Integer sort;
+	/**
+	 *
+	 */
+	@ApiModelProperty(name = "createTime",value = "")
+	@TableField(value = "create_time",fill=FieldFill.INSERT)
+	private LocalDateTime createTime;
+	/**
+	 *
+	 */
+	@ApiModelProperty(name = "updateTime",value = "")
+	@TableField(value = "update_time",fill=FieldFill.INSERT_UPDATE)
+	private LocalDateTime updateTime;
+	/**
+	 * 版本号
+	 */
+	@ApiModelProperty(name = "version",value = "版本号")
+	@Version
+	private Integer version;
+	/**
+	 * 是否删除
+	 */
+	@ApiModelProperty(name = "deleted",value = "是否删除")
+	@TableLogic
+	private Integer deleted;
+	/**
+	 * 创建人id
+	 */
+	@ApiModelProperty(name = "createUser",value = "创建人id")
+	private Long createUser;
+	/**
+	 * 更新人id
+	 */
+	@ApiModelProperty(name = "updateUser",value = "更新人id")
+	private Long updateUser;
+	/**
+	 * 创建人名称
+	 */
+	@ApiModelProperty(name = "createUserName",value = "创建人名称")
+	private String createUserName;
+	/**
+	 * 更新人名称
+	 */
+	@ApiModelProperty(name = "updateUserName",value = "更新人名称")
+	private String updateUserName;
 
 }
