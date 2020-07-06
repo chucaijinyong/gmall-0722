@@ -1,6 +1,5 @@
 package com.atguigu.gmall.search;
 
-import com.atguigu.core.bean.PageVo;
 import com.atguigu.core.bean.QueryCondition;
 import com.atguigu.core.bean.Resp;
 import com.atguigu.gmall.pms.entity.*;
@@ -79,11 +78,13 @@ class GmallSearchApplicationTests {
                         }
 
                         // 查询品牌
-                        Resp<BrandEntity> brandEntityResp = this.pmsClient.queryBrandById(skuInfoEntity.getBrandId());
-                        BrandEntity brandEntity = brandEntityResp.getData();
-                        if (brandEntity != null){
-                            goods.setBrandId(skuInfoEntity.getBrandId());
-                            goods.setBrandName(brandEntity.getName());
+                        if (skuInfoEntity.getBrandId() != null){
+                            Resp<BrandEntity> brandEntityResp = this.pmsClient.queryBrandById(skuInfoEntity.getBrandId());
+                            BrandEntity brandEntity = brandEntityResp.getData();
+                            if (brandEntity != null){
+                                goods.setBrandId(skuInfoEntity.getBrandId());
+                                goods.setBrandName(brandEntity.getName());
+                            }
                         }
 
                         // 查询分类
