@@ -14,6 +14,7 @@ public class GmallWebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+//        路径映射，表示要拦截所有请求
         registry.addInterceptor(loginInterceptor).addPathPatterns("/**");
     }
 }

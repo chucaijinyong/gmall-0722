@@ -45,6 +45,10 @@ public class WareListener {
         this.redisTemplate.delete(KEY_PREFIX + orderToken);
     }
 
+    /**
+     * 监听减库存的队列
+     * @param orderToken
+     */
     @RabbitListener(bindings = @QueueBinding(
             value = @Queue(value = "WMS-MINUS-QUEUE", durable = "true"),
             exchange = @Exchange(value = "GMALL-ORDER-EXCHANGE", ignoreDeclarationExceptions = "true", type = ExchangeTypes.TOPIC),

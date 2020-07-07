@@ -1,24 +1,17 @@
 package com.atguigu.gmall.order.controller;
 
 import com.alipay.api.AlipayApiException;
-import com.atguigu.core.bean.PageVo;
 import com.atguigu.core.bean.Resp;
-import com.atguigu.core.bean.UserInfo;
-import com.atguigu.core.exception.OrderException;
 import com.atguigu.gmall.oms.entity.OrderEntity;
-import com.atguigu.gmall.order.interceptors.LoginInterceptor;
+import com.atguigu.gmall.oms.vo.OrderSubmitVO;
 import com.atguigu.gmall.order.pay.AlipayTemplate;
 import com.atguigu.gmall.order.pay.PayAsyncVo;
 import com.atguigu.gmall.order.pay.PayVo;
 import com.atguigu.gmall.order.service.OrderService;
 import com.atguigu.gmall.order.vo.OrderConfirmVO;
-import com.atguigu.gmall.oms.vo.OrderSubmitVO;
 import com.atguigu.gmall.wms.vo.SkuLockVO;
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
-import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.ibatis.annotations.Param;
-import org.hibernate.validator.constraints.URL;
 import org.redisson.api.RCountDownLatch;
 import org.redisson.api.RSemaphore;
 import org.redisson.api.RedissonClient;
@@ -26,8 +19,6 @@ import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
 
 @RestController
 @RequestMapping("order")
@@ -49,47 +40,55 @@ public class OrderController {
     private RedissonClient redissonClient;
 
     @GetMapping("confirm")
-    public Resp<OrderConfirmVO> confirm(){
+    public Resp<OrderConfirmVO> confirm() {
 
         OrderConfirmVO confirmVO = this.orderService.confirm();
         return Resp.ok(confirmVO);
     }
 
-    @PostMapping("submit")
-    public Resp<Object> submit(@RequestBody OrderSubmitVO submitVO){
+//    @PostMapping("submit")
+
+    /**
+     * 将支付页让浏览器展示
+     * 这个接口主要就是调阿里的支付接口,展示支付页而已,所以只传订单标号过来也是可以的,根据订单编号来查询出总额
+     * @param submitVO
+     * @return
+     */
+    @GetMapping(value = "submit", produces = "text/html")// 明确的告诉浏览器我返回的类型是text/html
+    public String submit(@RequestBody OrderSubmitVO submitVO) throws AlipayApiException {
 
         OrderEntity orderEntity = this.orderService.submit(submitVO);
-
-        try {
-            PayVo payVo = new PayVo();
-            payVo.setOut_trade_no(orderEntity.getOrderSn());
-            payVo.setTotal_amount(orderEntity.getPayAmount() != null ? orderEntity.getPayAmount().toString() : "100");
-            payVo.setSubject("谷粒商城");
-            payVo.setBody("支付平台");
-            String form = this.alipayTemplate.pay(payVo);
-            System.out.println(form);
-        } catch (AlipayApiException e) {
-            e.printStackTrace();
-        }
-
-        return  Resp.ok(null);
+        PayVo payVo = new PayVo();
+        // 传过去交易编号,支付宝会根据交易编号和我们的appkeyid为我们做支付重复的校验
+        payVo.setOut_trade_no(orderEntity.getOrderSn());
+        payVo.setTotal_amount(orderEntity.getPayAmount() != null ? orderEntity.getPayAmount().toString() : "100");
+        payVo.setSubject("谷粒商城");
+        payVo.setBody("支付平台");
+        String form = this.alipayTemplate.pay(payVo);
+        return form;
     }
 
+    /**
+     * 支付成功之后回调要调用的方法.此回调要调用的方法路径在配置文件里指定.
+     * 支付宝会给我们返回响应数据,其响应数据我们用payAsyncVo封装
+     * @param payAsyncVo
+     * @return
+     */
     @PostMapping("pay/success")
-    public Resp<Object> paySuccess(PayAsyncVo payAsyncVo){
-
+    public Resp<Object> paySuccess(PayAsyncVo payAsyncVo) {
+        // 支付成功之后,需要做更新订单状态,减库存,加积分
         this.amqpTemplate.convertAndSend("GMALL-ORDER-EXCHANGE", "order.pay", payAsyncVo.getOut_trade_no());
         return Resp.ok(null);
     }
 
     @PostMapping("seckill/{skuId}")
-    public Resp<Object> seckill(@PathVariable("skuId")Long skuId){
+    public Resp<Object> seckill(@PathVariable("skuId") Long skuId) {
 
 
         RSemaphore semaphore = this.redissonClient.getSemaphore("semphore:lock:" + skuId);
         semaphore.trySetPermits(500);
 
-        if(semaphore.tryAcquire()) {
+        if (semaphore.tryAcquire()) {
             // 获取redis中的库存信息
             String countString = this.redisTemplate.opsForValue().get("order:seckill:" + skuId);
 
@@ -121,7 +120,7 @@ public class OrderController {
     }
 
     @GetMapping("seckill/{orderToken}")
-    public Resp<Object> querySeckill(@PathVariable("orderToken")String orderToken) throws InterruptedException {
+    public Resp<Object> querySeckill(@PathVariable("orderToken") String orderToken) throws InterruptedException {
         RCountDownLatch countDownLatch = this.redissonClient.getCountDownLatch("count:down:" + orderToken);
         countDownLatch.await();
 

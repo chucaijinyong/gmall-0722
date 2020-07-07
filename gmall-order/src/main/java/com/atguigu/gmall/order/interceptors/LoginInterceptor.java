@@ -16,6 +16,7 @@ import java.util.Map;
 
 @EnableConfigurationProperties(JwtProperties.class)
 @Component
+//public class LoginInterceptor implements HandlerInterceptor  也可以直接实现HandlerInterceptor来实现拦截器
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired
@@ -24,7 +25,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
     private static final ThreadLocal<UserInfo> THREAD_LOCAL = new ThreadLocal<>();
 
     /**
-     * 统一获取登陆状态
+     * 统一获取登陆状态。保证访问订单的所有用户都是登陆后的，没登陆的直接返回登录页
      * @param request
      * @param response
      * @param handler
@@ -48,6 +49,12 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         THREAD_LOCAL.set(userInfo);
 
         return super.preHandle(request, response, handler);
+
+        // 该方法需要改进的地方就是当没有获取到用户信息时，可以让其跳转到登录页，并基于用户合适的提示信息
+        // 另外获取用户的信息除了根据请求中的cookie来获取然后用jwt进行解析之外，还能使用springDataSession来存储和获取用户信息
+        // 默认springDataSession可以指定存储session的信息在哪里，你可以使用redis作为存储库，这样对代码的侵入性很小，只需要引入依赖
+        // 添加配置文件即可。不好的地方就是如果不是同系统即是域名都不同
+        // 就不容易处理了。
     }
 
     public static UserInfo getUserInfo(){
