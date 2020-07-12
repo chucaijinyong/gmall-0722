@@ -64,10 +64,17 @@ public class OrderListener {
 
 //        获取发送标识 是自增的
         long deliveryTag = message.getMessageProperties().getDeliveryTag();
-//        手动签收确认
+        try {
+            /**
+             * @param prefetchSize 没限制就是0
+             * @param prefetchCount 会告诉RabbitMQ不要同时给一个消费者推送多于N个消息，即一旦有N个消息还没有ack，则该consumer将block掉，直到有消息ack
+             * @param global true\false 是否将上面设置应用于channel，简单点说，就是上面限制是channel级别的还是consumer级别
+             */
+//            channel.basicQos(1,10,true);
+
+            //        手动签收确认
 //        * @param deliveryTag the tag from the received {@link com.rabbitmq.client.AMQP.Basic.GetOk} or {@link com.rabbitmq.client.AMQP.Basic.Deliver}
 //     * @param multiple 批量签收
-        try {
             channel.basicAck(deliveryTag,false);
 
             // 拒签

@@ -25,6 +25,7 @@ public class AuthGatewayFilter implements GatewayFilter {
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 
+        // 此处获取的是webFlux的请求和响应,需要将内置的web服务器设置为tomcat
         ServerHttpRequest request = exchange.getRequest();
         ServerHttpResponse response = exchange.getResponse();
         // 1. 获取jwt类型的token信息

@@ -4,6 +4,18 @@ spring:
   cloud:
     gateway:
       routes:
+        - id: index-route
+          uri: lb://index-service
+          predicates:
+            - Path=/api/index/**
+          filters:
+            - RewritePath=/api(?<segment>/?.*), $\{segment}
+        - id: order-route
+          uri: lb://order-service
+          predicates:
+            - Path=/api/order/**
+          filters:
+            - RewritePath=/api(?<segment>/?.*), $\{segment}
         - id: pms-route
           uri: lb://pms-service
           predicates:
@@ -28,19 +40,6 @@ spring:
           uri: lb://wms-service
           predicates:
             - Path=/wms/**
-        - id: index-route
-          uri: lb://index-service
-          predicates:
-            - Path=/api/index/**
-          filters:
-            - RewritePath=/api(?<segment>/?.*), $\{segment}
-        - id: order-route
-          uri: lb://order-service
-          predicates:
-            - Path=/api/order/**
-          filters:
-            - RewritePath=/api(?<segment>/?.*), $\{segment}
-
 
     nacos:
       discovery:

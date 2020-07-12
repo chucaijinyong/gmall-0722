@@ -36,6 +36,10 @@ public class FilterConfig {
         return registration;
     }
 
+    /**
+     * 防止xss攻击的过滤器
+     * @return
+     */
     @Bean
     public FilterRegistrationBean xssFilterRegistration() {
         FilterRegistrationBean registration = new FilterRegistrationBean();
