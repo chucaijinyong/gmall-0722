@@ -18,6 +18,19 @@
         <module>gmall-ums-interface</module>
         <module>gmall-oms-interface</module>
         <module>gmall-cart-interface</module>
+        <module>gmall-sms</module>
+        <module>gmall-pms</module>
+        <module>gmall-wms</module>
+        <module>gmall-ums</module>
+        <module>gmall-oms</module>
+        <module>gmall-gateway</module>
+        <module>gmall-cart</module>
+        <module>gmall-index</module>
+        <module>gmall-item</module>
+        <module>gmall-search</module>
+        <module>gmall-order</module>
+        <module>gmall-generator</module>
+        <module>gmall-auth</module>
     </modules>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>

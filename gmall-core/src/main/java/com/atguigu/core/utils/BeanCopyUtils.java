@@ -42,4 +42,8 @@ public class BeanCopyUtils {
 		return targets;
 	}
 
+	public static void main(String[] args) {
+		BeanUtils.copyProperties(null,null);
+	}
+
 }

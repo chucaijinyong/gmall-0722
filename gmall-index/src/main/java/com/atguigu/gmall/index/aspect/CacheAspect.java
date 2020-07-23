@@ -44,7 +44,7 @@ public class CacheAspect {
         // 获取目标方法的参数列表
         Object[] args = joinPoint.getArgs();
         String key = prefix + Arrays.asList(args).toString();
-
+        // 如果能命中缓存则返回,否则继续执行
         result = this.cacheHit(key, returnType);
         if (result != null) {
             return result;
