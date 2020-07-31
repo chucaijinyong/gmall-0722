@@ -16,5 +16,7 @@ import com.atguigu.core.bean.QueryCondition;
 public interface BrandService extends IService<BrandEntity> {
 
     PageVo queryPage(QueryCondition params);
+
+    PageVo findBrandPagination();
 }
 

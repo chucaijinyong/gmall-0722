@@ -12,6 +12,13 @@ spring:
     password: root
   redis:
     host: 192.168.56.10
+#    链路追踪
+  zipkin:
+    base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      #采样取值介于 0到1之间，1则表示全部收集
+      probability: 1
 mybatis-plus:
   global-config:
     db-config:

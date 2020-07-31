@@ -1,6 +1,5 @@
 package com.atguigu.gmall.gateway.config;
 
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -15,8 +14,9 @@ public class GmallCorsConfig {
 
         // cors跨域配置对象
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.addAllowedOrigin("http://localhost:1000");
-        configuration.addAllowedOrigin("http://127.0.0.1:1000");
+//        configuration.addAllowedOrigin("http://localhost:1000");
+//        configuration.addAllowedOrigin("http://127.0.0.1:1000");
+        configuration.addAllowedOrigin("*");
         configuration.setAllowCredentials(true);
         configuration.addAllowedMethod("*");
         configuration.addAllowedHeader("*");

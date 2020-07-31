@@ -3,9 +3,12 @@ server:
 spring:
   cloud:
     gateway:
+      discovery:
+        locator:
+          enabled: true #开启从注册中心动态创建路由的功能，利用微服务名进行路由
       routes:
         - id: index-route
-          uri: lb://index-service
+          uri: lb://index-service  # lb://serviceName是springcloud gateway在微服务中自动为我们创建的负载均衡uri
           predicates:
             - Path=/api/index/**
           filters:
@@ -40,6 +43,7 @@ spring:
           uri: lb://wms-service
           predicates:
             - Path=/wms/**
+
 
     nacos:
       discovery:

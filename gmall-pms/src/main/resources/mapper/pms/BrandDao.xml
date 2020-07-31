@@ -13,6 +13,13 @@
         <result property="firstLetter" column="first_letter"/>
         <result property="sort" column="sort"/>
     </resultMap>
+    <select id="findBrandPagination" resultType="com.atguigu.gmall.pms.dto.BrandDTO">
+SELECT pb.brand_id brandId,pb.`name` name
+,psi.spu_name spuName
+FROM
+pms_brand AS pb
+INNER JOIN pms_spu_info AS psi ON pb.brand_id = psi.brand_id
+    </select>
 
 
 </mapper>

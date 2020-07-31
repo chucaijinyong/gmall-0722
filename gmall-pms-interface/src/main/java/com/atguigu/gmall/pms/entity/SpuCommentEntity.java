@@ -85,7 +85,7 @@ public class SpuCommentEntity implements Serializable {
 	/**
 	 * 评论图片/视频[json数据；[{type:文件类型,url:资源路径}]]
 	 */
-	@ApiModelProperty(name = "resources",value = "评论图片/视频[json数据；[{type:文件类型,url:资源路径}]]")
+	@ApiModelProperty(name = "src/main/resources",value = "评论图片/视频[json数据；[{type:文件类型,url:资源路径}]]")
 	private String resources;
 	/**
 	 * 内容

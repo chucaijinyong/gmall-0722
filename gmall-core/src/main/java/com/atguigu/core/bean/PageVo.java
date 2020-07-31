@@ -44,7 +44,7 @@ public class PageVo implements Serializable {
 	 * 列表数据
 	 */
 	private List<?> list;
-	
+
 	/**
 	 * 分页
 	 * @param list        列表数据
@@ -57,6 +57,7 @@ public class PageVo implements Serializable {
 		this.totalCount = totalCount;
 		this.pageSize = pageSize;
 		this.currPage = currPage;
+//		Math.round()  “四舍五入”,Math.ceil()  “向上取整”,Math.floor()  “向下取整”
 		this.totalPage = (int)Math.ceil((double)totalCount/pageSize);
 	}
 
@@ -72,5 +73,5 @@ public class PageVo implements Serializable {
 	}
 
 
-	
+
 }

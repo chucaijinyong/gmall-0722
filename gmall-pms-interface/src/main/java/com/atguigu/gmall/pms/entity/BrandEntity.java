@@ -1,12 +1,17 @@
 package com.atguigu.gmall.pms.entity;
 
+import com.atguigu.core.valid.InsertGroup;
+import com.atguigu.core.valid.ListValue;
+import com.atguigu.core.valid.UpdateGroup;
 import com.baomidou.mybatisplus.annotation.*;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
-import lombok.Data;
 
 /**
  * 品牌
@@ -31,11 +36,13 @@ public class BrandEntity implements Serializable {
 	 * 品牌名
 	 */
 	@ApiModelProperty(name = "name",value = "品牌名")
+	@NotEmpty(message = "品牌名不能为空",groups = {UpdateGroup.class, InsertGroup.class})
 	private String name;
 	/**
 	 * 品牌logo地址
 	 */
 	@ApiModelProperty(name = "logo",value = "品牌logo地址")
+	@NotEmpty(message = "品牌名不能为空",groups = {InsertGroup.class})
 	private String logo;
 	/**
 	 * 介绍
@@ -55,51 +62,59 @@ public class BrandEntity implements Serializable {
 	/**
 	 * 排序
 	 */
+	@NotNull
+	@ListValue(values = {1,0})
 	@ApiModelProperty(name = "sort",value = "排序")
 	private Integer sort;
 	/**
 	 *
 	 */
 	@ApiModelProperty(name = "createTime",value = "")
-	@TableField(value = "create_time",fill=FieldFill.INSERT)
+	@TableField(value = "create_time",fill=FieldFill.INSERT,exist = false)
 	private LocalDateTime createTime;
 	/**
 	 *
 	 */
 	@ApiModelProperty(name = "updateTime",value = "")
-	@TableField(value = "update_time",fill=FieldFill.INSERT_UPDATE)
+	@TableField(value = "update_time",fill=FieldFill.INSERT_UPDATE,exist = false)
 	private LocalDateTime updateTime;
 	/**
 	 * 版本号
 	 */
 	@ApiModelProperty(name = "version",value = "版本号")
 	@Version
+	@TableField(exist = false)
 	private Integer version;
 	/**
 	 * 是否删除
 	 */
 	@ApiModelProperty(name = "deleted",value = "是否删除")
 	@TableLogic
+	@TableField(exist = false)
 	private Integer deleted;
 	/**
 	 * 创建人id
 	 */
 	@ApiModelProperty(name = "createUser",value = "创建人id")
+	@TableField(exist = false)
 	private Long createUser;
 	/**
 	 * 更新人id
 	 */
 	@ApiModelProperty(name = "updateUser",value = "更新人id")
+	@TableField(exist = false)
 	private Long updateUser;
 	/**
 	 * 创建人名称
 	 */
 	@ApiModelProperty(name = "createUserName",value = "创建人名称")
+	@TableField(exist = false)
 	private String createUserName;
 	/**
 	 * 更新人名称
 	 */
 	@ApiModelProperty(name = "updateUserName",value = "更新人名称")
+	@TableField(exist = false)
 	private String updateUserName;
 
 }
