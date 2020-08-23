@@ -6,6 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 @SpringBootTest
 class GmallPmsApplicationTests {
 
@@ -32,5 +37,25 @@ class GmallPmsApplicationTests {
 
 //        rabbitTemplate.convertAndSend("chucai_exchange","chucai_rk","songhaixiawoaini");
 
+    }
+
+    @Test
+    public void test2(){
+
+        LocalDate now = LocalDate.now();
+        LocalDate localDate = now.plusDays(1);
+        LocalDate localDate1 = now.plusDays(2);
+
+        System.out.println("localDate = " + localDate);
+        System.out.println("localDate1 = " + localDate1);
+
+        LocalTime min = LocalTime.MIN;
+        System.out.println("min = " + min);
+        LocalTime max = LocalTime.MAX;
+        System.out.println("max = " + max);
+
+        LocalDateTime of = LocalDateTime.of(now, min);
+        String format = of.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+        System.out.println("format = " + format);
     }
 }
