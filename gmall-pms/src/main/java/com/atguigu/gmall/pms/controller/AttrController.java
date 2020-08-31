@@ -1,21 +1,20 @@
 package com.atguigu.gmall.pms.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-
 import com.atguigu.core.bean.PageVo;
 import com.atguigu.core.bean.QueryCondition;
 import com.atguigu.core.bean.Resp;
+import com.atguigu.gmall.pms.entity.AttrEntity;
+import com.atguigu.gmall.pms.json.JSON;
+import com.atguigu.gmall.pms.service.AttrService;
 import com.atguigu.gmall.pms.vo.AttrVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import com.atguigu.gmall.pms.entity.AttrEntity;
-import com.atguigu.gmall.pms.service.AttrService;
+import java.util.Arrays;
 
 
 
@@ -28,7 +27,7 @@ import com.atguigu.gmall.pms.service.AttrService;
  * @date 2019-12-02 11:23:37
  */
 @Api(tags = "商品属性 管理")
-@RestController
+@Controller
 @RequestMapping("pms/attr")
 public class AttrController {
     @Autowired
@@ -61,10 +60,11 @@ public class AttrController {
     @ApiOperation("详情查询")
     @GetMapping("/info/{attrId}")
     @PreAuthorize("hasAuthority('pms:attr:info')")
-    public Resp<AttrEntity> info(@PathVariable("attrId") Long attrId){
+    @JSON(type = AttrEntity.class, filter="attrName,searchType")
+    public AttrEntity info(@PathVariable("attrId") Long attrId){
 		AttrEntity attr = attrService.getById(attrId);
 
-        return Resp.ok(attr);
+        return attr;
     }
 
     /**
