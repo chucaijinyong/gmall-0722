@@ -2,11 +2,13 @@ package com.atguigu.gmall.ums.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 /**
@@ -117,6 +119,7 @@ public class MemberEntity implements Serializable {
 	 * 注册时间
 	 */
 	@ApiModelProperty(name = "createTime",value = "注册时间")
-	private Date createTime;
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd HH")
+	private LocalDateTime createTime;
 
 }
