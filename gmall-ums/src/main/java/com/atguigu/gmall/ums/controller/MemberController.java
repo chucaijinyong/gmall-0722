@@ -1,20 +1,19 @@
 package com.atguigu.gmall.ums.controller;
 
-import java.util.Arrays;
-import java.util.Map;
-
-
 import com.atguigu.core.bean.PageVo;
 import com.atguigu.core.bean.QueryCondition;
 import com.atguigu.core.bean.Resp;
+import com.atguigu.gmall.ums.annotation.PrintlnLog;
+import com.atguigu.gmall.ums.annotation.ResponseResultBody;
+import com.atguigu.gmall.ums.entity.MemberEntity;
+import com.atguigu.gmall.ums.service.MemberService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
-import com.atguigu.gmall.ums.entity.MemberEntity;
-import com.atguigu.gmall.ums.service.MemberService;
+import java.util.Arrays;
 
 
 
@@ -29,6 +28,7 @@ import com.atguigu.gmall.ums.service.MemberService;
 @Api(tags = "会员 管理")
 @RestController
 @RequestMapping("ums/member")
+@ResponseResultBody
 public class MemberController {
     @Autowired
     private MemberService memberService;
@@ -57,13 +57,23 @@ public class MemberController {
      */
     @ApiOperation("分页查询(排序)")
     @GetMapping("/list")
+    @PrintlnLog
     @PreAuthorize("hasAuthority('ums:member:list')")
-    public Resp<PageVo> list(QueryCondition queryCondition) {
+    public PageVo list(QueryCondition queryCondition) {
         PageVo page = memberService.queryPage(queryCondition);
 
-        return Resp.ok(page);
+        return page;
     }
 
+    /**
+     * 列表
+     */
+    @ApiOperation("分页查询(排序)")
+    @GetMapping("/list1")
+    @PreAuthorize("hasAuthority('ums:member:list')")
+    public PageVo list1(QueryCondition queryCondition) throws Exception {
+        throw new Exception("是我错了");
+    }
 
     /**
      * 信息
