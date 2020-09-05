@@ -68,6 +68,15 @@
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/cn.smallbun.screw/screw-core -->
+        <dependency>
+            <groupId>cn.smallbun.screw</groupId>
+            <artifactId>screw-core</artifactId>
+            <version>1.0.5</version>
+        </dependency>
+
+
     </dependencies>
 
     <dependencyManagement>
@@ -88,6 +97,60 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+            <plugin>
+                <groupId>cn.smallbun.screw</groupId>
+                <artifactId>screw-maven-plugin</artifactId>
+                <version>1.0.5</version>
+                <dependencies>
+                    <!-- HikariCP -->
+                    <dependency>
+                        <groupId>com.zaxxer</groupId>
+                        <artifactId>HikariCP</artifactId>
+                        <version>3.4.5</version>
+                    </dependency>
+                    <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>5.1.47</version>
+                    </dependency>
+
+                </dependencies>
+                <configuration>
+                    <!--username-->
+                    <username>root</username>
+                    <!--password-->
+                    <password>root</password>
+                    <!--driver-->
+                    <driverClassName>com.mysql.jdbc.Driver</driverClassName>
+                    <!--jdbc url-->
+                    <jdbcUrl>jdbc:mysql://127.0.0.1:3306/guli_ums</jdbcUrl>
+                    <!--生成文件类型-->
+                    <fileType>HTML</fileType>
+                    <!--打开文件输出目录-->
+                    <openOutputDir>false</openOutputDir>
+                    <!--生成模板-->
+                    <produceType>freemarker</produceType>
+                    <!--文档名称 为空时:将采用[数据库名称-描述-版本号]作为文档名称-->
+                    <!--<docName>测试文档名称</docName>-->
+                    <!--描述-->
+                    <description>数据库文档生成</description>
+                    <!--版本-->
+                    <version>${project.version}</version>
+                    <!--标题-->
+                    <title>fire数据库文档</title>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 
