@@ -12,22 +12,41 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.rabbit.annotation.RabbitHandler;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.UUID;
 
 
 @Service("memberService")
+@RabbitListener(queues = "stockback-queue")
 public class MemberServiceImpl extends ServiceImpl<MemberDao, MemberEntity> implements MemberService {
 
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
     @Override
     public PageVo queryPage(QueryCondition params) {
+
+        rabbitTemplate.convertAndSend("exchange","order-pay","我是消息");
+
         IPage<MemberEntity> page = this.page(
                 new Query<MemberEntity>().getPage(params),
                 new QueryWrapper<MemberEntity>()
         );
 
         return new PageVo(page);
+    }
+
+    @RabbitHandler
+    public void handlerMessage(Message message,String s){
+        System.out.println("new Date() = " + new Date());
+        System.out.println(message);
+        System.out.println("s = " + s);
     }
 
     @Override
