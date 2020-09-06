@@ -7,7 +7,7 @@ spring:
         server-addr: 127.0.0.1:8848
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/guli_ums?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&verifyServerCertificate=false&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/guli_ums?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&rewriteBatchedStatements=true&verifyServerCertificate=false&useSSL=false
     username: root
     password: root
     xa:

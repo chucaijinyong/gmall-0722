@@ -1,24 +1,19 @@
 package com.atguigu.gmall.ums.config;
-
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.jackson.Jackson2ObjectMapperBuilderCustomizer;
 import org.springframework.boot.jackson.JsonComponent;
 import org.springframework.context.annotation.Bean;
-
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.TimeZone;
-
 /**
- * @author chubaodong
- * @version v1.0.0
- * @Package : com.atguigu.gmall.ums.config
- * @Description : TODO
- * @Create on : 2020/9/5 22:52
+ * @author chucai
+ * @Description 时间全局格式化配置
+ * @CreateTime 2020/9/6 16:30
  **/
 @JsonComponent
 public class DateFormatConfig {
@@ -46,10 +41,8 @@ public class DateFormatConfig {
     }
 
     /**
-     * @author xiaofu
-     * @description LocalDate 类型全局时间格式化
-     * @date 2020/8/31 18:22
-     */
+    * LocalDate 类型全局时间格式化
+    */
     @Bean
     public LocalDateTimeSerializer localDateTimeDeserializer() {
         return new LocalDateTimeSerializer(DateTimeFormatter.ofPattern(pattern));
