@@ -1,5 +1,4 @@
 package com.atguigu.gmall.ums.aspect;
-
 import com.alibaba.fastjson.JSON;
 import com.atguigu.gmall.ums.annotation.PrintlnLog;
 import lombok.extern.slf4j.Slf4j;
@@ -12,13 +11,10 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
-
 /**
- * @author chubaodong
- * @version v1.0.0
- * @Package : com.atguigu.gmall.ums.aspect
- * @Description : TODO
- * @Create on : 2020/9/5 21:59
+ * @author chucai
+ * @Description 日志切面
+ * @CreateTime 2020/9/12 14:08
  **/
 @Slf4j
 @Aspect
