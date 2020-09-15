@@ -31,7 +31,7 @@
         <module>gmall-order</module>
         <module>gmall-generator</module>
         <module>gmall-auth</module>
-        <module>gmall-distributed-job</module>
+<!--        <module>gmall-distributed-job</module>-->
     </modules>
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
