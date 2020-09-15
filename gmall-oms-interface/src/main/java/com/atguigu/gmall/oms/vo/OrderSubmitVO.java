@@ -9,7 +9,7 @@ import java.util.List;
 @Data
 public class OrderSubmitVO {
 
-    private String orderToken; // f防重
+    private String orderToken; // 防重
     private MemberReceiveAddressEntity address;
     private Integer payType;
     private String deliveryCompany;

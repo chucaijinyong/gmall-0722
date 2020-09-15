@@ -38,3 +38,58 @@ alipay:
   return_url: http://www.baidu.com
   sign_type: RSA2
   gatewayUrl: https://openapi.alipaydev.com/gateway.do
+
+#
+#alipay:
+#  app_id: 2019081366221270
+#  merchant_private_key: MIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQCLR1yx2CQ319qFrobzxL+TtJBdIR6qeJcRx9uz+99NjSRcRXciBPfd3vheC8Yymid22DMISA68BADO4AzD3/9k/jxkaBzo2CP79gmawk7JPleLa4mG9d257hOBX5FwWxeg3C9ymhTdmCbGlbfZg5oDFhHw1b9F/6/URypegGW7ugJyWkdPvz3qgkDB7UzbQN25tNeQZ3l0AMf1pY4/LFHgw78zhOSmSbIng6OeguriUt8p5FCUDgJNZqfupQk9uwh9GMDK6i2hFYWcTR6AlLs6zfcdbk5PBBd2auyDMxSQcaJtsHzqLiLBA25iCwOAaeKdExrgsZHxB5tzu412ogi5AgMBAAECggEBAIed9w5czfdqQSeGJ3XZkEl8uk1UYI3RWhhAKRf6GxdiZZNLOJNxjwEFiYXZpSXEoMTCA/7+WwqMQ1UtKIDZ7c8jFx8VmYDIZVGD4xpENX8TKx9gmMtHQJ04ytlgezeSG1HQ1IqcqdCTxL39LsWntSFoLhP5rYO1Ujo7CXB3SZgeMoJ/fsuBo6K1HYA73iuitnRY1gYVbC3EpFu0apHVeCbmo9TC0hRtpi3s3TVgiGn4/9INw1/d+WQ62z5YTae4GKO/UPHz94yQn19BaFbsHS92uCaOGs+Wvs0yyQ+/R9OS8PinjxXR0ALvWnZ6qFwgfa4N7d+itDQzSL9A2BN9sgECgYEA5RIV5WtaVJPn4ttWJArQteu97JGZ6NBRevdC/9B0sKcgnh4/AHxzeTA52ZorjKa5w1QBwie5bHNS10UL+uQmYnwIZP2gx6UqApRhm3nc6/dKJj+50SseqpA2zA/q7S7AHoUccJWZiJC08KStSAx8y/leV+oU3lyNfbBz6IKrHCECgYEAm6b6AlKJW1kmwgrZsfeABnaiMLK+gRHC6tGo75HeB4l5XWu82YDiA61Cy9hmCyhHwMx3n7T1yOlUJ/vEOLR2Nu4SqJR4TgAPLwsYFT3qpygn4NPLkw+nt2uHXA+6Jp2wT0DK5Yg5FLvd4uX71A6k9adHLeyGRNi3prwXtSy/GZkCgYEAiKUPNrmhOs64BtV8PyfMdJjZxKLeQsjxsf6JkvwQf8hSZr/4KRwT7fjcqXeT/uT97wzPt7fmnlD028Euck1isGD4yPWa0T0vIDbPOuWo6YGsU8Cz4ZhtRKWeaoAcTbwTkqEo4+f5nENmDB7P1yjL0QlCRAM4y6Q+Kvn1Sn+X/sECgYEAmVCyh6EWzNSWmaEoZuS7xSILhd46SVXeYX+cYEWUpmXiFoPto2wQs8Bwv+rqMGk/rAd6eOQ9COXTUALsd1JB8r8zv7tmeKYUTqkl0p6HSJkEFq9noPZVpBSVYrfXCvxd0uKmN8qjNuoJl9oi3/CAybs4IGMOqjexRdmVnI5zuVkCgYAtqBwYYHUBPUWePVyyB5GZoIoHNJUnrH1yuSkg9A7xsBm6D2xOUTZ768ujX/2jA0D/041JLV47+qdvavaMN5WANJp2C6zK+C069M1LVKKBVupCkeq3btkq0Zrg5cAowl6YcdeBB1VjpDDe7nGTDPpisa/jtRKt9wyAYoQO5z5FFg==
+#  alipay_public_key:  MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAgxZsxMIhJeP1jsqbE+B9I/hNJurueUssru6hQ1sSPJ7IIdM8KIXYsGO/O1syH1gGFS1+mvPpk9kmvyuFsIeuYkjE4kbDf8KdaThezQSzgkbzW5Zbkx7Bm8Kt76ltBEVDZP+WzqNLpdZwcQeVz+IJ/JULojzkRNadxFh4Iry/mOX2IdjebKGpxYYrFUOq2L3dqHL3btKCmvGDsYLeER0OaQSW4KqksQQEHqPlnRLRjAI7IW2bHaFvfRXNB+QJ+lqZF+KjBIrYrYuys2SNC3BQ9yKi8rWa439nXXvz4OJ77eYthyFdTxYvj5RbZ1gO6t4sBbWlwoxU3+aJp5hQP5mGJQIDAQAB
+#  #  支付成功的回调
+#  notify_url: http://chennian.ngrok2.xiaomiqiu.cn/dyOrder/AppAliPayNotify
+#  #  支付成功返回的地址
+#  return_url: http://www.baidu.com
+#  sign_type: RSA2
+#  gatewayUrl: https://openapi.alipaydev.com/gateway.do
+#  charset: utf-8
+##  PayUrl: http://111.6.79.10:5100/aliPay/pay
+##  selectUrl: http://111.6.79.10:5100/aliPay/transferQuery
+##  refundUrl: http://111.6.79.10:5100/aliPay/refund
+#
+#
+#weixin:
+#  appid: wx4c0b364da1b44875
+#  mchid: 1549453491
+#  wechat_key: 221c749ed105b2de0dc0112460c30322
+#  payChannel: weixin
+#  NotifyUrl:  http://chennian.ngrok2.xiaomiqiu.cn/dyOrder/notify
+#  PayUrl: http://111.6.79.10:5100/wechatPay/pay
+#  selectUrl: http://111.6.79.10:5100/wechatPay/gettransferinfo
+#  refundUrl: http://111.6.79.10:5100/wechatPay/refund
+#
+#  #  PayUrl: http://192.168.100.39:5100/wechatPay/pay
+#  private_key: MIIEwAIBADANBgkqhkiG9w0BAQEFAASCBKowggSmAgEAAoIBAQDC+GdIViKk/vXi
+#    eh0xBZ9nChVRST88xEiNAbpMakLvXHpyReJyliIEaSCA/qjFC5wBwS4PYQLuDe51
+#    AYYVzqxvochjOk4G9AYzPnfs2HFK46vzgZuoaNPk+zSZ6SihOoV0kp5wSbeFD7Qo
+#    nNTYBABnQZkRlGghzFIwgN6GV44uxZ/8pH3+R0TFBuJVfa8aw8jL/eMVeTCzMpe6
+#    +BHiv00PyicS2/57Rhji9n8bnEfCCb+VyAW33Y/GcIZRw5vxLtOPd7Pi25qP67Ya
+#    vz3CPY4twsmNUJ528gEx6DNyfNhlcKhUL6VBM4srxza354JsIRi1NfJskZME0CVQ
+#    05Q8m7rZAgMBAAECggEBAJDao0mgDT9O2fo4xcVtKwAQAsSQyfXo0wpIVVR+wlo5
+#    +BM8jsCZgI6MWITeLx+uv2qiTwlIBzg8i4TM7AT5ty19IndukxghZxXdfJYwPQPp
+#    4RAapD5cG8oNRQhwrSoUY6C3ahV8/2dRwoVF9/DCEFam6wWfoDo0JoA4zps7I7zk
+#    9CwELmn+3ZF7aicm5HGiMCUOMJBblmruYYo+CVA0Kd/QzMkXwa55aYM1Pm/Ku1bM
+#    D6Cl3UCk+NHzylW9N6zrD+rg5pCubjGgBQkN+KugHMzko3xSiBa2tEGVZOE09N38
+#    x0fa6jZQv/Kpd5O1LTjm1NLOxxBH3XcWYUitRyZq3DECgYEA8hhrxNOo+bNQlb48
+#    UihqRT2k5alKMGZQI6tAsCUqseQKPXYVo4bAshq1kZQ2MQCH82auCzQbVZ1FmviA
+#    +Q9vyhM9RVT9hj1aYptvlXenb5Qv+Jmz8siRUwwN8ERpp2bl9cgM0C+VN5xiv+cz
+#    sCv7L+GsAx7zXZaw7IsK3OFVrWUCgYEAzisXwBcBfy0Gkc9dW13ay5hTKp1LYhRM
+#    L/i7bWE0181bCUTtX5th6u9l6B+05SGmxxM5DUFpSquTOA9olBi7aP73P1EBSQUF
+#    hEL2wIalR8RpFZRxehb6xtjFp8AUpGD+OOc37k3nH1QZi/M3BAOG84cMJBr8vLxk
+#    scAuhAMQ6mUCgYEAisjZLxKvscXMEqvl5KtqkJsQJuBvuWNN2cTY5qHH4gb6n9VL
+#    /lzHptKM+BHhJyJIzY41hBKxANmSB48iUKU6zrtMyqw4UnZllFXLGAJqKBrpjTh/
+#    4lR8iwFEFFMDxoXEmqu+PLKqdiDes2iVRw9Phll2xKs/lI1Ii7IB3jIHbckCgYEA
+#    k1qXchK/Xh9XV7XnWts8+1FW99lOvL4XKh5UD7xvYWKEE57xLelH1fvfUUYAK9ie
+#    dCDYIRJEaDszUNkqfNckc8nv+5AxI/hz1fFqnXZfAWlvVh4v8PwlpyPeOaR+3HH6
+#    ob8Y6blCXNDmJXHjO3ot5Tb7xX6Ib3kTWzwpwu7SE0UCgYEArsFGekF7YgMgoNY/
+#    wxTYbUkdemDz/gt+eaDv3nigglbZBYYhB9m1Sw5RwVAWx+X9pyAA7Uj5Jdg0uxDd
+#    +DIT26b53aYeMXKdZAsZV/cxfJdLNuD4mOzuQRcx0fmH3MgUkzYkQc5JVBqAdul4
+#    M3rRooe3zhCBp4YsAr3awEQfWaA=

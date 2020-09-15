@@ -46,11 +46,9 @@ public class OrderController {
         return Resp.ok(confirmVO);
     }
 
-//    @PostMapping("submit")
-
     /**
      * 将支付页让浏览器展示
-     * 这个接口主要就是调阿里的支付接口,展示支付页而已,所以只传订单标号过来也是可以的,根据订单编号来查询出总额
+     * 这个接口主要就是调阿里的支付接口,展示支付页而已,所以只传订单编号过来也是可以的,根据订单编号来查询出总额
      * @param submitVO
      * @return
      */
