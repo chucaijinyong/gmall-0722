@@ -5,11 +5,11 @@ import com.atguigu.core.bean.UserInfo;
 import com.atguigu.core.exception.OrderException;
 import com.atguigu.gmall.cart.pojo.Cart;
 import com.atguigu.gmall.oms.entity.OrderEntity;
+import com.atguigu.gmall.oms.vo.OrderItemVO;
+import com.atguigu.gmall.oms.vo.OrderSubmitVO;
 import com.atguigu.gmall.order.feign.*;
 import com.atguigu.gmall.order.interceptors.LoginInterceptor;
 import com.atguigu.gmall.order.vo.OrderConfirmVO;
-import com.atguigu.gmall.oms.vo.OrderItemVO;
-import com.atguigu.gmall.oms.vo.OrderSubmitVO;
 import com.atguigu.gmall.pms.entity.SkuInfoEntity;
 import com.atguigu.gmall.pms.entity.SkuSaleAttrValueEntity;
 import com.atguigu.gmall.ums.entity.MemberEntity;
@@ -20,12 +20,10 @@ import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.core.script.DefaultRedisScript;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -155,15 +153,15 @@ public class OrderService {
         // 获取orderToken
         String orderToken = submitVO.getOrderToken();
 
-        // 1. 防重复提交，查询redis中有没有orderToken信息，有，则是第一次提交，放行并删除redis中的orderToken
-        String script = "if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end";
-        Long flag = this.redisTemplate.execute(new DefaultRedisScript<>(script, Long.class), Arrays.asList(TOKEN_PREFIX + orderToken), orderToken);
-        if (flag == 0) {
-            throw new OrderException("订单不可重复提交！");
-        }
+//        // 1. 防重复提交，查询redis中有没有orderToken信息，有，则是第一次提交，放行并删除redis中的orderToken
+//        String script = "if redis.call('get', KEYS[1]) == ARGV[1] then return redis.call('del', KEYS[1]) else return 0 end";
+//        Long flag = this.redisTemplate.execute(new DefaultRedisScript<>(script, Long.class), Arrays.asList(TOKEN_PREFIX + orderToken), orderToken);
+//        if (flag == 0) {
+//            throw new OrderException("订单不可重复提交！");
+//        }
 
         // 2. 校验价格，总价一致放行
-        List<OrderItemVO> items = submitVO.getItems(); // 送货清单
+        List<OrderItemVO> items = submitVO.getOrderItems(); // 送货清单
         BigDecimal totalPrice = submitVO.getTotalPrice(); // 总价
         if (CollectionUtils.isEmpty(items)) {
             throw new OrderException("没有购买的商品，请到购物车中勾选商品！");

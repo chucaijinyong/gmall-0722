@@ -9,12 +9,8 @@ import com.atguigu.core.utils.MapUtils;
 import com.atguigu.gmall.order.config.AliPayConfig;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.stereotype.Component;
-
-import java.util.HashMap;
-import java.util.Map;
 
 @EnableConfigurationProperties(value = AliPayConfig.class)
 @Component
@@ -86,7 +82,7 @@ public class AlipayTemplate {
         String product_code = "FAST_INSTANT_TRADE_PAY";
         MapUtils mapUtils = new MapUtils();
         mapUtils.put("out_trade_no",out_trade_no).put("total_amount",total_amount).put("subject",subject).put("body",body).put("product_code",product_code);
-        alipayRequest.setBizContent(JSONObject.toJSONString(product_code));
+        alipayRequest.setBizContent(JSONObject.toJSONString(mapUtils));
 
 //        alipayRequest.setBizContent("{\"out_trade_no\":\""+ out_trade_no +"\","
 //                + "\"total_amount\":\""+ total_amount +"\","

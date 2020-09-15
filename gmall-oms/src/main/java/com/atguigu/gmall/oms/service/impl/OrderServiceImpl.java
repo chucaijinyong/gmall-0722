@@ -1,32 +1,30 @@
 package com.atguigu.gmall.oms.service.impl;
 
 import com.alibaba.fastjson.JSON;
+import com.atguigu.core.bean.PageVo;
+import com.atguigu.core.bean.Query;
+import com.atguigu.core.bean.QueryCondition;
 import com.atguigu.core.bean.Resp;
+import com.atguigu.gmall.oms.dao.OrderDao;
 import com.atguigu.gmall.oms.dao.OrderItemDao;
+import com.atguigu.gmall.oms.entity.OrderEntity;
 import com.atguigu.gmall.oms.entity.OrderItemEntity;
 import com.atguigu.gmall.oms.feign.GmallPmsClient;
 import com.atguigu.gmall.oms.feign.GmallUmsClient;
+import com.atguigu.gmall.oms.service.OrderService;
 import com.atguigu.gmall.oms.vo.OrderItemVO;
 import com.atguigu.gmall.oms.vo.OrderSubmitVO;
 import com.atguigu.gmall.pms.entity.SkuInfoEntity;
 import com.atguigu.gmall.pms.entity.SpuInfoEntity;
 import com.atguigu.gmall.ums.entity.MemberEntity;
 import com.atguigu.gmall.ums.entity.MemberReceiveAddressEntity;
-import org.springframework.amqp.core.AmqpTemplate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.atguigu.core.bean.PageVo;
-import com.atguigu.core.bean.Query;
-import com.atguigu.core.bean.QueryCondition;
-
-import com.atguigu.gmall.oms.dao.OrderDao;
-import com.atguigu.gmall.oms.entity.OrderEntity;
-import com.atguigu.gmall.oms.service.OrderService;
+import org.springframework.amqp.core.AmqpTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import springfox.documentation.annotations.ApiIgnore;
 
 import java.util.Date;
 import java.util.List;
@@ -93,7 +91,7 @@ public class OrderServiceImpl extends ServiceImpl<OrderDao, OrderEntity> impleme
         Long orderId = orderEntity.getId();
 
         // 保存订单详情OrderItemEntity
-        List<OrderItemVO> items = submitVO.getItems();
+        List<OrderItemVO> items = submitVO.getOrderItems();
         items.forEach(item -> {
             OrderItemEntity itemEntity = new OrderItemEntity();
             itemEntity.setSkuId(item.getSkuId());

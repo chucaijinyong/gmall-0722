@@ -52,7 +52,8 @@ public class OrderController {
      * @param submitVO
      * @return
      */
-    @GetMapping(value = "submit", produces = "text/html")// 明确的告诉浏览器我返回的类型是text/html
+//    @PostMapping(value = "submit", produces = "text/html")// 明确的告诉浏览器我返回的类型是text/html
+    @PostMapping(value = "submit")// 明确的告诉浏览器我返回的类型是text/html
     public String submit(@RequestBody OrderSubmitVO submitVO) throws AlipayApiException {
 
         OrderEntity orderEntity = this.orderService.submit(submitVO);

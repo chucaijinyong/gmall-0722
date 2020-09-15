@@ -39,6 +39,7 @@ public class MemberController {
         return Resp.ok(memberEntity);
     }
 
+    @PrintlnLog(description = "注册")
     @PostMapping("register")
     public Resp<Object> register(MemberEntity memberEntity, @RequestParam("code")String code){
         this.memberService.register(memberEntity, code);

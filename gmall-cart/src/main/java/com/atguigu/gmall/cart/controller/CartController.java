@@ -4,19 +4,21 @@ import com.atguigu.core.bean.Resp;
 import com.atguigu.gmall.cart.pojo.Cart;
 import com.atguigu.gmall.cart.service.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
+@RefreshScope
 @RequestMapping("cart")
 public class CartController {
 
     @Autowired
     private CartService cartService;
 
-    @PostMapping
+    @PostMapping("addCart")
     public Resp<Object> addCart(@RequestBody Cart cart){
 
         this.cartService.addCart(cart);
@@ -24,7 +26,7 @@ public class CartController {
         return Resp.ok(null);
     }
 
-    @GetMapping
+    @GetMapping("queryCarts")
     public Resp<List<Cart>> queryCarts(){
 
         List<Cart> carts = this.cartService.queryCarts();

@@ -13,7 +13,7 @@ public class OrderSubmitVO {
     private MemberReceiveAddressEntity address;
     private Integer payType;
     private String deliveryCompany;
-    private List<OrderItemVO> items;
+    private List<OrderItemVO> orderItems;
     private Integer bounds;
     private BigDecimal totalPrice; // 校验价格
     private Long userId;
