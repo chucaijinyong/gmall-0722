@@ -62,6 +62,14 @@ public class OrderService {
 
     private static final String TOKEN_PREFIX = "order:token:";
 
+    /**
+    * 此教程和雷丰阳的不同地方在于,在购物车和订单确认乃至支付模块没有进行用户登录的拦截,所以从登录拦截器获取用户信息之后
+     * 该教程就将用户信息不停的在异步方法之间传递,没有发生丢失请求头和异步编排时获取请求头数据为空的情况
+     * 但是实际生产中肯定是要进行登录校验的,肯定是雷丰阳老师的教学更符合现实
+     * 雷丰阳做了用户登录的拦截,即是如果在cookie或者session中获取不到用户信息,就会让其重新登录,所以需要写请求拦截器以便
+     * 在远程调用的时候把请求头给添加进去,在异步编排的时候从RequestContextHolder里获取request请求信息,将request请求信息
+     * 传递到其他异步线程的RequestContextHolder里
+    */
     public OrderConfirmVO confirm() {
 
         OrderConfirmVO orderConfirmVO = new OrderConfirmVO();
