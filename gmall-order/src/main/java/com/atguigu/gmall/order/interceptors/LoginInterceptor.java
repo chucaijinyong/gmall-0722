@@ -50,11 +50,23 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
 
         return super.preHandle(request, response, handler);
 
-        // 该方法需要改进的地方就是当没有获取到用户信息时，可以让其跳转到登录页，并基于用户合适的提示信息
+        // 该方法需要改进的地方是当没有获取到用户信息时，不让其进行支付,可以让其跳转到登录页，并基于用户合适的提示信息
         // 另外获取用户的信息除了根据请求中的cookie来获取然后用jwt进行解析之外，还能使用springDataSession来存储和获取用户信息
         // 默认springDataSession可以指定存储session的信息在哪里，你可以使用redis作为存储库，这样对代码的侵入性很小，只需要引入依赖
-        // 添加配置文件即可。不好的地方就是如果不是同系统即是域名都不同
-        // 就不容易处理了。
+        // 添加配置文件即可。不好的地方就是如果不是同系统即是域名都不同就不容易处理了。具体代码如下
+
+//        UserInfo attribute = (UserInfo)request.getSession().getAttribute("你指定的值");
+//        if (attribute == null) {
+//            // 没登录就去登录
+//            request.getSession().setAttribute("msg","请先进行登录");
+//            response.sendRedirect("http://auth.gulimall.com/login.html");
+//            return false;
+//        }else{
+//            //将获取到的值放到threadLocal里便于用户往下传递
+//            THREAD_LOCAL.set(attribute);
+//            return true;
+//        }
+
     }
 
     public static UserInfo getUserInfo(){
