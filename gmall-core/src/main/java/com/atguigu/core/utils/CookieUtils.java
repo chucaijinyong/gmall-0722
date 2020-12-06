@@ -12,7 +12,7 @@ import java.net.URLDecoder;
 import java.net.URLEncoder;
 
 /**
- * 
+ *
  * Cookie 工具类
  *
  */
@@ -22,7 +22,7 @@ public final class CookieUtils {
 
 	/**
 	 * 得到Cookie的值, 不编码
-	 * 
+	 *
 	 * @param request
 	 * @param cookieName
 	 * @return
@@ -32,8 +32,8 @@ public final class CookieUtils {
 	}
 
 	/**
-	 * 得到Cookie的值,
-	 * 
+	 * 根据cookie名获取Cookie的值,按照默认方式进行解码
+	 *
 	 * @param request
 	 * @param cookieName
 	 * @return
@@ -41,11 +41,12 @@ public final class CookieUtils {
 	public static String getCookieValue(HttpServletRequest request, String cookieName, boolean isDecoder) {
 		Cookie[] cookieList = request.getCookies();
 		if (cookieList == null || cookieName == null){
-			return null;			
+			return null;
 		}
 		String retValue = null;
 		try {
 			for (int i = 0; i < cookieList.length; i++) {
+				// 因为cookie里不能放重复的key,所以找到后可立刻跳出循环
 				if (cookieList[i].getName().equals(cookieName)) {
 					if (isDecoder) {
 						retValue = URLDecoder.decode(cookieList[i].getValue(), "UTF-8");
@@ -62,8 +63,8 @@ public final class CookieUtils {
 	}
 
 	/**
-	 * 得到Cookie的值,
-	 * 
+	 * 根据cookie名获取Cookie的值,按照传入的编码方式进行解码
+	 *
 	 * @param request
 	 * @param cookieName
 	 * @return
@@ -71,7 +72,7 @@ public final class CookieUtils {
 	public static String getCookieValue(HttpServletRequest request, String cookieName, String encodeString) {
 		Cookie[] cookieList = request.getCookies();
 		if (cookieList == null || cookieName == null){
-			return null;			
+			return null;
 		}
 		String retValue = null;
 		try {
@@ -120,9 +121,8 @@ public final class CookieUtils {
 
 	/**
 	 * 设置Cookie的值，并使其在指定时间内生效
-	 * 
-	 * @param cookieMaxAge
-	 *            cookie生效的最大秒数
+	 *
+	 * @param cookieMaxAge cookie生效的最大秒数
 	 */
 	public static final void setCookie(HttpServletRequest request, HttpServletResponse response, String cookieName, String cookieValue, Integer cookieMaxAge, String encodeString, Boolean httpOnly) {
 		try {
@@ -136,10 +136,16 @@ public final class CookieUtils {
 				cookieValue = URLEncoder.encode(cookieValue, encodeString);
 			}
 			Cookie cookie = new Cookie(cookieName, cookieValue);
-			if (cookieMaxAge != null && cookieMaxAge > 0)
+			// cookie的默认值是-1 表示关闭浏览器后删除,正数代表有效的生存时间
+			if (cookieMaxAge != null && cookieMaxAge > 0){
 				cookie.setMaxAge(cookieMaxAge);
-			if (null != request)// 设置域名的cookie
+			}
+
+			if (null != request){
+				// 设置域名的cookie
 				cookie.setDomain(getDomainName(request));
+			}
+
 			cookie.setPath("/");
 
 			if(httpOnly != null) {
@@ -156,7 +162,7 @@ public final class CookieUtils {
 	 */
 	private static final String getDomainName(HttpServletRequest request) {
 		String domainName = null;
-
+		// 获取请求全路径 http://ip:port/工程名/模块名/***** 由于进行域名映射了,类似于https://www.itjc8.com/forum.php?mod=viewthread
 		String serverName = request.getRequestURL().toString();
 		if (serverName == null || serverName.equals("")) {
 			domainName = "";
@@ -170,10 +176,11 @@ public final class CookieUtils {
 			if (len > 3) {
 				// www.xxx.com.cn
 				domainName = domains[len - 3] + "." + domains[len - 2] + "." + domains[len - 1];
-			} else if (len <= 3 && len > 1) {
-				// xxx.com or xxx.cn
+			} else if (len < 3 && len > 1) {
+				// www.com or xxx.cn
 				domainName = domains[len - 2] + "." + domains[len - 1];
 			} else {
+				// www.itjc8.com
 				domainName = serverName;
 			}
 		}
